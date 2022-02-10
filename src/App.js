@@ -1,23 +1,16 @@
-import logo from './logo.svg';
+import Header from './components/Header';
+import Simulador from './components/Simulador';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className=' flex flex-row flex-grow justify-center h-screen'>
+      <div className='bg-gray-100 w-11/12 h-5/6 mt-7'>
+        <Header/>
+        <div className='px-8'>
+          <Simulador/>
+        </div>
+      </div>
     </div>
   );
 }
