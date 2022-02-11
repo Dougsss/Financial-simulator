@@ -1,6 +1,7 @@
 import './style.css';
 
-const Simulador = () => {
+
+const Simulator = () => {
     return(
         <div classNome='flex'>
             <h2 classNome='font-bold'>
@@ -19,9 +20,9 @@ const Simulador = () => {
                             <button className='flex flex-auto border-l-2'>Liquido</button>
                         </div>
                         <label>Aporte Inicial</label>
-                        <input type='text' name='aporteInicial' placeholder='' required></input>
+                        <input type='text' name='aporteInicial' placeholder=''></input>
                         <label>Prazo (em meses)</label>
-                        <input type='text' name='prazo' placeholder='' required></input>
+                        <input type='text' name='prazo' placeholder=''></input>
                         <label>IPCA (ao ano)</label>
                         <input type='text' name='IPCA' placeholder=''></input>
                         <button type='submit' className='border-2 border-black border-solid rounded-lg'>Limpar Campos</button>
@@ -39,15 +40,15 @@ const Simulador = () => {
                             <button className='flex flex-auto border-r-2'>FIXADO</button>
                         </div>
                         <label>Aporte Mensal</label>
-                        <input type='text' name='aporteInicial' placeholder='' required></input>
+                        <input type='text' name='aporteInicial' placeholder=''></input>
                         <label>Rentabilidade</label>
-                        <input type='text' name='prazo' placeholder='' required></input>
+                        <input type='text' name='prazo' placeholder=''></input>
                         <label>CDI (ao ano)</label>
                         <input type='text' name='IPCA' placeholder=''></input>
                         <button type='submit' className='border-2 border-black border-solid rounded-lg'>Simular</button>
                     </form>
                 </div>
-                <div className='container md:w-full bg-red-500'>
+                <div className='container bg-red-500 md:w-full'>
                     <p/>
                 </div>
             </div>
@@ -56,4 +57,4 @@ const Simulador = () => {
     )
 }
 
-export default Simulador;
+export default Simulator;
