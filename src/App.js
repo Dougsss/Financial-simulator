@@ -8,6 +8,7 @@ class App extends React.Component {
     super(props);
     this.state = { indicators: [] }
   }
+  //Este método serve para carregar os dados remoto e chamar o setState(), alterando o valor do estado inicial do componente
   componentDidMount() {
     fetch('http://localhost:3000/indicadores')
       .then(response => response.json())

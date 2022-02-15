@@ -4,7 +4,7 @@ import NumberFormat from "react-number-format";
 import { useState } from "react"
 
 export default function Simulator({ indicators }) {
-  //Este Bloco inicia o formulario com os valores padrões
+  //Este Bloco inicia o formulario com os valores padrões. Definimos o valor "1" ao Prazo pois entendo que não pode ser menor que um mês
   const { register, handleSubmit, reset, setValue, control, formState: { errors } } = useForm({
     defaultValues: {
       deadLine: 1,
@@ -15,7 +15,7 @@ export default function Simulator({ indicators }) {
       cdi: 0,
     }
   });
-  //Este Bloco cria os estados do tiporendimento, tipoindexação  e resultados da API
+  //Este Bloco cria os estados do tipo rendimento, tipoindexação  e resultados da API
   const [incomeType, setIncomeType] = useState('bruto')
   const [indexType, setIndexType] = useState('pos')
   const [result, setResult] = useState(null)
@@ -39,7 +39,7 @@ export default function Simulator({ indicators }) {
     })
     setResult(null)
   }
-  //Este bloco popula cdi e ipca que veio da chamada da API
+  //Este bloco popula cdi e ipca com valores que veio da chamada da API
   indicators.forEach(i => {
     if (i.nome === 'cdi') {
       setValue('cdi', i.valor)
@@ -57,16 +57,19 @@ export default function Simulator({ indicators }) {
               <p>Rendimento</p>
               <span>!</span>
             </div>
+            {/* Este bloco contém buttons que vai selecionar os estados para o calculos */}
             <div className="flex flex-row border-2 rounded-lg">
               <button type="button" className={`flex flex-auto p-2 border-r-2 ${incomeType === 'bruto' ? 'bg-orange-500 text-white' : ''}`} onClick={() => { setIncomeType('bruto') }}>Bruto</button>
               <button type="button" className={`flex flex-auto p-2 border-r-2 ${incomeType === 'liquido' ? 'bg-orange-500 text-white' : ''}`} onClick={() => { setIncomeType('liquido') }}>Liquido</button>
             </div>
             <label>Aporte Inicial</label>
+            {/* Adicionei um controlador para "controlar" as regras e o que vai ser renderizado */}
             <Controller
               control={control}
               name="initialValue"
               rules={{ required: true }}
               render={({ field: { onChange, value, name } }) => (
+                /* Este bloco formata os definições do valor para servir de parametro para o controlador */
                 <NumberFormat
                   thousandSeparator={true}
                   prefix={"R$ "}
@@ -76,6 +79,7 @@ export default function Simulator({ indicators }) {
                   decimalScale={2}
                   onValueChange={v => { onChange(Number(v.value)) }} />
               )} />
+            {/* Este bloco contem as  regras aplicadas aos erros dos campos */}
             {errors.initialValue && <span className="text-red-500">Este compo é obrigatorio</span>}
             <label>Prazo (em meses)</label>
             <input autoComplete="off" type="text" {...register("deadLine", { required: true, min: 1 })} />
@@ -83,6 +87,7 @@ export default function Simulator({ indicators }) {
             {errors.deadLine?.type === 'min' && <span className="text-red-500">Prazo tem que ser maior que 0</span>}
             <label>IPCA (ao ano)</label>
             <input autoComplete="off" type="text" {...register("ipca", { disabled: true })} />
+            {/* Botão contendo a função de limpar os campos com dados */}
             <button onClick={cleanFields} type="button" className="border-2 border-black border-solid rounded-lg">Limpar Campos</button>
           </div>
           <div className="flex flex-col">
@@ -90,17 +95,20 @@ export default function Simulator({ indicators }) {
               <p>Tipos de indexação</p>
               <span>!</span>
             </div>
+            {/* Este bloco contém buttons que vai selecionar os estados para o calculos */}
             <div className="flex flex-row border-2 rounded-lg">
               <button type="button" className={`flex flex-auto p-2 border-r-2 ${indexType === 'pre' ? 'bg-orange-500 text-white' : ''}`} onClick={() => setIndexType('pre')}>PRÉ</button>
               <button type="button" className={`flex flex-auto p-2 border-r-2 ${indexType === 'pos' ? 'bg-orange-500 text-white' : ''}`} onClick={() => setIndexType('pos')}>POS</button>
               <button type="button" className={`flex flex-auto p-2 border-r-2 ${indexType === 'ipca' ? 'bg-orange-500 text-white' : ''}`} onClick={() => setIndexType('ipca')}>FIXADO</button>
             </div>
             <label>Aporte Mensal</label>
+            {/* Adicionei um controlador para "controlar" as regras e o que vai ser renderizado */}
             <Controller
               control={control}
               name="monthlyValue"
               rules={{ required: true }}
               render={({ field: { onChange, value } }) => (
+                /* Este bloco formata os definições do valor para servir de parametro para o controlador */
                 <NumberFormat
                   thousandSeparator={true}
                   prefix={"R$ "}
@@ -109,21 +117,20 @@ export default function Simulator({ indicators }) {
                   decimalScale={2}
                   onValueChange={v => { onChange(Number(v.value)) }} />
               )} />
+            {/* Este bloco contem as  regras aplicadas aos erros dos campos */}
             {errors.monthlyValue && <span className="text-red-500">Este compo é obrigatorio</span>}
             <label>Rentabilidade (%)</label>
             <input className="" autoComplete="off" type="number" {...register("profitability", { required: true, min: 0 })} />
             {errors.profitability && <span className="text-red-500">Este compo é obrigatorio</span>}
             <label>CDI (ao ano)</label>
             <input autoComplete="off" type="text" {...register("cdi", { disabled: true })} />
-            <button
-              type="submit"
-              className="border-2 border-black border-solid rounded-lg"
-            >
+            <button type="submit" className="border-2 border-black border-solid rounded-lg">
               Simular
             </button>
           </div>
         </div>
       </form>
+      {/* Este bloco exibe os resultados dos valores com os parametros fornecidos pela API */}
       <div className="flex flex-row w-1/2 gap-x-2">
         <div className="flex flex-col gap-y-2">
           <div className="p-5 bg-white">valor final bruto

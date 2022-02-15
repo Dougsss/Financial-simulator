@@ -5,11 +5,12 @@
 ### Aplicação vai estar rodando na porta http://localhost:3030
 # Tecnologias usadas 
 1. React
-2. React-hook-form
-3. React-number-format
-- Para poder pra ...
+    - *React-hook-form*
+    > Uma biblioteca para auxiliar a criação de formulários.
+    - *React-number-format*
+    > Construtor que habilita a formatação de números.
 2. TailwindCSS
-- para melhor ...
+    - Optei por usar este framework pois ele oferece uma forma intuitiva e simples de oferecer responsividade e um código mais enxuto através de uma série de classes para criar os componentes. 
 
 ---
-react scripts foi utilizado para dar build no projeto e gerar arquivos minificados para questões de otimização.
+React scripts foi utilizado para dar build no projeto e gerar arquivos minificados para questões de otimização.
