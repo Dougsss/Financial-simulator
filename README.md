@@ -10,7 +10,9 @@
     - *React-number-format*
     > Construtor que habilita a formatação de números.
 2. TailwindCSS
-    - Optei por usar este framework pois ele oferece uma forma intuitiva e simples de oferecer responsividade e um código mais enxuto através de uma série de classes para criar os componentes. 
+    - Optei por usar este framework pois ele oferece uma forma intuitiva e simples de oferecer responsividade e um código mais enxuto através de uma série de classes para criar os componentes.
+3. Boxicons
+    - Utilizei esta ferramenta que utiliza Web componentes para gerar icons tornando mais fácil e eficiente. 
 
 ---
 React scripts foi utilizado para dar build no projeto e gerar arquivos minificados para questões de otimização.

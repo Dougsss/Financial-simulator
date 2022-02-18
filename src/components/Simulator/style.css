@@ -3,5 +3,13 @@
 @tailwind utilities;
 
 .boxResult{
-   @apply p-5 bg-white w-52 shadow-md shadow-gray-200 border border-gray-200 ;
+   @apply py-1 p-5 bg-white flex flex-col font-bold justify-between h-20 text-center shadow-md shadow-gray-200 border border-gray-200 ;
+}
+
+.valueResult{
+    @apply font-medium
+}
+
+.divResult{
+    @apply flex flex-col gap-y-5 w-full md:w-1/3
 }

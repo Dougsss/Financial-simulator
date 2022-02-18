@@ -1,10 +1,12 @@
 import "./style.css";
+import 'boxicons'
 import { Controller, useForm } from "react-hook-form";
 import NumberFormat from "react-number-format";
 import { useState } from "react"
 
 export default function Simulator({ indicators }) {
   //Este Bloco inicia o formulario com os valores padrões. Definimos o valor "1" ao Prazo pois entendo que não pode ser menor que um mês
+  //Também foi definido os nomes das variáveis em inglês, pois é o padrão para programação.
   const { register, handleSubmit, reset, setValue, control, formState: { errors } } = useForm({
     defaultValues: {
       deadLine: 1,
@@ -28,6 +30,7 @@ export default function Simulator({ indicators }) {
       })
   };
   //Este bloco reseta os resultados e formularios 
+  //Também foi definido os nomes das variáveis em inglês, pois é o padrão para programação.
   const cleanFields = () => {
     reset({
       deadLine: 1,
@@ -49,18 +52,18 @@ export default function Simulator({ indicators }) {
   })
   return (
     <div className="flex flex-col mt-8 lg:flex-row">
-      <form className="flex flex-col w-1/2" onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="mb-5 text-xl font-bold">Simulador</h2>
-        <div className="flex flex-row gap-12">
-          <div className="flex flex-col w-56">
-            <div className="flex justify-between flex-grow mb-2 font-extralight">
+      <form className="flex flex-col w-full lg:w-1/2" onSubmit={handleSubmit(onSubmit)}>
+        <h2 className="mb-5 text-xl text-center lg:text-left font-bold">Simulador</h2>
+        <div className="flex flex-col sm:flex-row gap-x-12 lg:gap-12">
+          <div className="flex flex-col w-full md:w-2/5 gap-">
+            <div className="flex justify-between flex-grow mb-3 font-extralight">
               <p>Rendimento</p>
-              <span>!</span>
+              <box-icon name='info-circle'></box-icon>
             </div>
-            {/* Este bloco contém buttons que vai selecionar os estados para o calculos */}
+            {/* Este bloco contém buttons que irão selecionar os estados para os cálculos */}
             <div className="flex flex-row mx-1 mb-6 border-2 border-black rounded-lg">
-              <button type="button" className={`flex flex-auto p-2 ${incomeType === 'bruto' ? 'bg-orange-500 text-white rounded-lg border-r-2 border-black' : ''}`} onClick={() => { setIncomeType('bruto') }}>Bruto</button>
-              <button type="button" className={`flex flex-auto p-2 ${incomeType === 'liquido' ? 'bg-orange-500 text-white rounded-lg border-l-2 border-black' : ''}`} onClick={() => { setIncomeType('liquido') }}>Líquido</button>
+              <button type="button" className={`flex flex-auto h-12 p-2 ${incomeType === 'bruto' ? 'bg-orange-500 text-white rounded-lg border-r-2 border-black' : ''}`} onClick={() => { setIncomeType('bruto') }}>Bruto</button>
+              <button type="button" className={`flex flex-auto h-12 p-2 ${incomeType === 'liquido' ? 'bg-orange-500 text-white rounded-lg border-l-2 border-black' : ''}`} onClick={() => { setIncomeType('liquido') }}>Líquido</button>
             </div>
             <label className="mb-2 font-extralight">Aporte Inicial</label>
             {/* Adicionei um controlador para "controlar" as regras e o que vai ser renderizado */}
@@ -69,7 +72,7 @@ export default function Simulator({ indicators }) {
               name="initialValue"
               rules={{ required: true }}
               render={({ field: { onChange, value, name } }) => (
-                /* Este bloco formata os definições do valor para servir de parametro para o controlador */
+                /* Este bloco formata as definições do valor para servir de parametro para o controlador */
                 <NumberFormat
                   thousandSeparator={true}
                   prefix={"R$ "}
@@ -90,16 +93,16 @@ export default function Simulator({ indicators }) {
             {/* Botão contendo a função de limpar os campos com dados */}
             <button onClick={cleanFields} type="button" className="font-bold border-2 border-black border-solid rounded-lg h-11">Limpar Campos</button>
           </div>
-          <div className="flex flex-col w-56">
-            <div className="flex justify-between flex-grow mb-2 font-extralight">
+          <div className="flex flex-col w-full md:w-2/5">
+            <div className="flex justify-between flex-grow mb-3 font-extralight">
               <p>Tipos de indexação</p>
-              <span>!</span>
+              <box-icon name='info-circle'></box-icon>
             </div>
-            {/* Este bloco contém buttons que vai selecionar os estados para o calculos */}
+            {/* Este bloco contém buttons que irão selecionar os estados para os cálculos */}
             <div className="flex flex-row mx-1 mb-6 border-2 border-black rounded-lg">
-              <button type="button" className={`flex flex-auto p-2 ${indexType === 'pre' ? 'bg-orange-500 text-white rounded-lg border-r-2 border-black' : ''}`} onClick={() => setIndexType('pre')}>PRÉ</button>
-              <button type="button" className={`flex flex-auto p-2 ${indexType === 'pos' ? 'bg-orange-500 text-white rounded-lg border-x-2 border-black' : ''}`} onClick={() => setIndexType('pos')}>POS</button>
-              <button type="button" className={`flex flex-auto p-2 ${indexType === 'ipca' ? 'bg-orange-500 text-white rounded-lg border-l-2 border-black' : ''}`} onClick={() => setIndexType('ipca')}>FIXADO</button>
+              <button type="button" className={`flex flex-auto h-12 p-2 ${indexType === 'pre' ? 'bg-orange-500 text-white rounded-lg border-r-2 border-black' : ''}`} onClick={() => setIndexType('pre')}>PRÉ</button>
+              <button type="button" className={`flex flex-auto h-12 p-2 ${indexType === 'pos' ? 'bg-orange-500 text-white rounded-lg border-x-2 border-black' : ''}`} onClick={() => setIndexType('pos')}>POS</button>
+              <button type="button" className={`flex flex-auto h-12 p-2 ${indexType === 'ipca' ? 'bg-orange-500 text-white rounded-lg border-l-2 border-black' : ''}`} onClick={() => setIndexType('ipca')}>FIXADO</button>
             </div>
             <label className="mb-2 font-extralight">Aporte Mensal</label>
             {/* Adicionei um controlador para "controlar" as regras e o que vai ser renderizado */}
@@ -108,7 +111,7 @@ export default function Simulator({ indicators }) {
               name="monthlyValue"
               rules={{ required: true }}
               render={({ field: { onChange, value } }) => (
-                /* Este bloco formata os definições do valor para servir de parametro para o controlador */
+                /* Este bloco formata as definições do valor para servir de parametro para o controlador */
                 <NumberFormat
                   thousandSeparator={true}
                   prefix={"R$ "}
@@ -131,26 +134,26 @@ export default function Simulator({ indicators }) {
         </div>
       </form>
       {/* Este bloco exibe os resultados dos valores com os parametros fornecidos pela API */}
-      <div className="flex flex-col">
-        <h2 className="mb-5 text-xl font-bold">Resultado da Simulação</h2>
-        <div className="flex flex-col w-1/2 mt-4 lg:flex-row gap-x-5">
-          <div className="flex flex-col gap-y-5">
-            <div className="boxResult">Valor final bruto
-              <p>{result?.valorFinalBruto}</p></div>
-            <div className="boxResult">Valor final líquido
-              <p>{result?.valorFinalLiquido}</p></div>
+      <div className="flex flex-col w-full lg:w-1/2">
+        <h2 className="mb-5 mt-12 lg:mt-0 text-xl text-center lg:text-left font-bold">Resultado da Simulação</h2>
+        <div className="flex flex-col mt-4 md:flex-row gap-x-5">
+          <div className="divResult">
+            <div className="boxResult">Valor Final Bruto
+              <p className="valueResult">{result?.valorFinalBruto}</p></div>
+            <div className="boxResult">Valor Final Líquido
+              <p className="valueResult text-green-600">{result?.valorFinalLiquido}</p></div>
           </div>
-          <div className="flex flex-col gap-y-5">
-            <div className="boxResult">Cota do IR
-              <p>{result?.aliquotaIR}</p></div>
-            <div className="boxResult">Total investido
-              <p>{result?.valorTotalInvestido}</p></div>
+          <div className="divResult">
+            <div className="boxResult">Alíquota do IR
+              <p className="valueResult">{result?.aliquotaIR}</p></div>
+            <div className="boxResult">Valor Total Investido
+              <p className="valueResult">{result?.valorTotalInvestido}</p></div>
           </div>
-          <div className="flex flex-col gap-y-5">
-            <div className="boxResult">Pago IR
-              <p>{result?.valorPagoIR}</p></div>
-            <div className="boxResult">Ganho liquido
-              <p>{result?.ganhoLiquido}</p></div>
+          <div className="divResult">
+            <div className="boxResult">Valor Pago em IR
+              <p className="valueResult">{result?.valorPagoIR}</p></div>
+            <div className="boxResult">Ganho Líquido
+              <p className="valueResult text-green-600">{result?.ganhoLiquido}</p></div>
           </div>
         </div>
       </div>
