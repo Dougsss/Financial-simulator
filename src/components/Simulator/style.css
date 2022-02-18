@@ -1,1 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+.boxResult{
+   @apply p-5 bg-white w-52 shadow-md shadow-gray-200 border border-gray-200 ;
+}

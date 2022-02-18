@@ -21,7 +21,7 @@ class App extends React.Component {
       <div className='flex flex-row justify-center flex-grow h-screen '>
         <div className='w-11/12 bg-gray-100 h-5/6 mt-7'>
           <Header />
-          <div className='px-8'>
+          <div className='px-10'>
             <Simulator indicators={this.state.indicators} />
           </div>
         </div>
