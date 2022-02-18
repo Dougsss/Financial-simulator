@@ -2,6 +2,9 @@
 `npm install` 
 # Para rodar a aplicação:
 `npm start`
+# Para rodar a API na aplicação:
+### Faça o clone/download deste repositório: https://github.com/eqi-investimentos/desafio-fake-api e execute em paralelo a aplicação.
+---
 ### Aplicação vai estar rodando na porta http://localhost:3030
 # Tecnologias usadas 
 1. React
