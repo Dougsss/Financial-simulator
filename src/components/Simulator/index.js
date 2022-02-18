@@ -94,7 +94,7 @@ export default function Simulator({ indicators }) {
             <button onClick={cleanFields} type="button" className="font-bold border-2 border-black border-solid rounded-lg h-11">Limpar Campos</button>
           </div>
           <div className="flex flex-col w-full md:w-2/5">
-            <div className="flex justify-between flex-grow mb-3 font-extralight">
+            <div className="flex justify-between mt-10 sm:mt-0 flex-grow mb-3 font-extralight">
               <p>Tipos de indexação</p>
               <box-icon name='info-circle'></box-icon>
             </div>
